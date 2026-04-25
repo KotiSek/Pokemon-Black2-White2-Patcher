@@ -1,17 +1,17 @@
 # patches/ivs_evs.py
-
+ """
 class IVPatcher:
-    """
+    
     Patch sprawia że każdy pokemon dostaje 31 IV we wszystkich statach.
     Zamieniamy MOV R1,#0x1F na MOV R0,#0xFF — po AND R0,R1 wynik to zawsze 0xFF & 0x1F = 31.
     Oryginalny flow funkcji (PUSH/POP stos) pozostaje nienaruszony.
     Zweryfikowany offset: 0x1E0FC (White 2 USA/EU, zdekompresowany ARM9).
-    """
+
     OFFSET_W2 = 0x0001E0FC
 
     # Oryginalne bajty: MOV R1,#0x1F + AND R0,R1
     ORIGINAL_BYTES = bytes([0x1F, 0x21, 0x08, 0x40])
-
+ 
     # MOV R0,#0xFF + AND R0,R1 => 0xFF & 0x1F = 31, flow funkcji nienaruszony
     PATCH_BYTES = bytes([0x1F, 0x20, 0x00, 0x46])  # MOV R0,#31 + MOV R0,R0 (NOP)
 
@@ -41,3 +41,4 @@ class IVPatcher:
         except Exception as e:
             log_fn(f"BŁĄD IV patch: {e}")
             return False
+             
