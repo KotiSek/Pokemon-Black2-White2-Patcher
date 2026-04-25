@@ -1,9 +1,5 @@
 class ShinyRatePatcher:
-    """
-    FINALNA wersja:
-    - <=1/257 → idealny patch CMP
-    - >1/257  → bezpieczny fallback (RNG scaling)
-    """
+
 
     OFFSET_CMP = 0x00018E1C
     OFFSET_EOR = 0x00018E1A
@@ -24,9 +20,8 @@ class ShinyRatePatcher:
             threshold = round(65536 / rate)
             log_fn(f"Target: 1/{rate} (threshold={threshold})")
 
-            # ─────────────────────────────
-            # 🟢 TRYB 1 — CZYSTY CMP
-            # ─────────────────────────────
+            #  CMP
+           
             if threshold <= 255:
                 current = bytes(arm9[self.OFFSET_CMP:self.OFFSET_CMP+12])
 
@@ -44,9 +39,7 @@ class ShinyRatePatcher:
                 log_fn(f"✅ Dokładny shiny: 1/{real}")
                 return True
 
-            # ─────────────────────────────
-            # 🟡 TRYB 2 — FALLBACK
-            # ─────────────────────────────
+                #Fallback
             else:
                 import math
 

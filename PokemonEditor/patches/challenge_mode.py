@@ -59,7 +59,7 @@ class ChallengeModePatcher:
             log_fn(f"BŁĄD: Nie można otworzyć danych trenerów: {e}")
             return False
 
-        # --- KROK 1: Boost poziomów i IV ---
+        
         count_buffed = 0
 
         for idx in range(len(narc_tr.files)):
@@ -114,7 +114,7 @@ class ChallengeModePatcher:
 
         log_fn(f"✓ Zbuffowano {count_buffed} trenerów (+lvl scaling, boost IV)")
 
-        # --- KROK 2: Podmiana liderów ---
+        
         count_leaders = 0
 
         for normal_id, challenge_id in self.LEADER_MAP.items():

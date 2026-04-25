@@ -3,7 +3,6 @@ import ndspy.narc
 class EVPatcher:
     NARC_PATH = 'a/0/1/6'
 
-    # Struktura Personal Data (82 bajty na pokémona)
     # Offset 0x1C (28) = EV yield HP
     # Offset 0x1D (29) = EV yield Attack
     # Offset 0x1E (30) = EV yield Defense
@@ -32,7 +31,7 @@ class EVPatcher:
             if len(data) < self.EV_OFFSET + self.EV_COUNT:
                 continue
 
-            # Sprawdź czy ma jakieś EV do wyzerowania
+            
             has_evs = any(data[self.EV_OFFSET + j] != 0 for j in range(self.EV_COUNT))
             if has_evs:
                 for j in range(self.EV_COUNT):

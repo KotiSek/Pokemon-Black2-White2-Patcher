@@ -22,9 +22,7 @@ class EvolutionPatcher:
     THUNDER_STONE_ID    = 83    # Thunder Stone
     PRISM_SCALE_ID      = 537   # Prism Scale (Feebas → Milotic)
 
-    # --- Konkretne reguły dla każdego pokémona ---
-    # Format: pokemon_id → lista (slot_wynik_id, nowy_typ, nowy_arg)
-    # None w nowy_arg oznacza "zachowaj oryginalny arg"
+  
     SPECIFIC_RULES = {
         # Wymiana BEZ przedmiotu → poziom 34
         64:  [(65,  EVO_LEVEL_UP, 34)],   # Kadabra → Alakazam
